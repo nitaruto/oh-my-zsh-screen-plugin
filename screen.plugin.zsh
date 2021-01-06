@@ -17,7 +17,7 @@ camperdave-screen-set-hard(){
 camperdave-sceen-preexec(){
     ## Screen-Specific
     
-    if [[ $TERM == *screen* ]]; then
+    if camperdave-sceen-is-screen; then
         TITLE="${PWD/#$HOME/~}"
         s=$3;
         arg=("${(s/ /)s}")
@@ -35,12 +35,16 @@ camperdave-sceen-preexec(){
 
 camperdave-sceen-precmd(){
     ## Screen-Specific
-    if [[ $TERM == *screen* ]]; then
+    if camperdave-sceen-is-screen; then
         TITLE="${PWD/#$HOME/~}"
         HARD="zsh"
         camperdave-screen-set-title $TITLE 
         camperdave-screen-set-hard $HARD
     fi
+}
+
+camperdave-sceen-is-screen(){
+    [[ $TERM == *screen* ]] || [ -n "${WINDOW:-}" ]
 }
 
 add-zsh-hook precmd camperdave-sceen-precmd
