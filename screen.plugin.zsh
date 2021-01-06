@@ -28,7 +28,7 @@ camperdave-sceen-preexec(){
         
         camperdave-screen-set-title $TITLE
         
-        HARD="${$(echo $3 | sed -r 's/^command sudo ([^ ]*) .*/\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/}"
+        HARD="${$(echo $3 | gsed -r 's/^command sudo ([^ ]*) .*/\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/}"
         camperdave-screen-set-hard $HARD
     fi
 }
